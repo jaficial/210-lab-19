@@ -58,14 +58,23 @@ void output(Node * list){
         cout << setw(4) << "" << "> Average: " << average << endl;
     }
 }
+class Movie {
+private:
+    string movie_title;
+    Node *movie_ratings;
+    Node *movie_comments;
 
+public:
+    Movie(string title, Node *ratings, Node *comments) {string }
+};
 
 /* NOTES: - REVIEW COMMENTS NEED TO BE READ FROM AN EXTERNAL FILE
           - MOVIE RATING IS A RANDOM (type double) NUMBER BETWEEN 1.0 and 5.0 (must only have 1 decimal place))
           - NEED A MOVIE CLASS 
             - OBJECTS: TITLE, 
                 LINKED LIST FOR RATING NUMBER 
-                LINKED LIST FOR REVIEW COMMENTS*/
+                LINKED LIST FOR REVIEW COMMENTS
+          - main() needs to feature a container of the Movie objects*/
 int main(){
     Node *head = nullptr; // node
     Node *current = head; // current points to head node

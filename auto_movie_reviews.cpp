@@ -84,6 +84,7 @@ struct movieNode {
     movieNode *next;
 };
 
+
 /* NOTES: - REVIEW COMMENTS NEED TO BE READ FROM AN EXTERNAL FILE
           - MOVIE RATING IS A RANDOM (type double) NUMBER BETWEEN 1.0 and 5.0 (must only have 1 decimal place))
           - NEED A MOVIE CLASS 
@@ -121,6 +122,7 @@ int main(){
     //  - nodes for movies container
     //  - nodes for and comments 
     //  - ONLY NEED ONE RATING PER MOVIE, TWO COMMENTS PER MOVIE
+    double temp_rating;
     for (int i = 0; i < MAX_MOVIES; i++){ // Outer for loop is for movie container (linked list)
         movieNode *new_movie = new movieNode;
         Node *head = nullptr; // if I have the head initialization here, i'll have a head for each set of movie data
@@ -143,13 +145,15 @@ int main(){
             }
         }
 
-        double temp_rating = rand() % 5 + 1;
+        temp_rating = rand() % 5 + 1;
         if (!container_head) { // for first node
             container_head = new_movie;
             new_movie->next = nullptr;
-            new_movie->movie_obj =  movie("")
+            new_movie->movie_obj =  Movie(temp_title, temp_rating, head);
         }
-
+        else { // every other node
+            
+        }
 
     }
     // output is printing out correctly

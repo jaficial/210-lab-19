@@ -79,42 +79,32 @@ public:
                 LINKED LIST FOR RATING NUMBER 
                 LINKED LIST FOR REVIEW COMMENTS
           - main() needs to feature a container of the Movie objects*/
-int main(){
+int main(){ // will take short break
     ifstream fin ("reviews_for_movies.txt");
     Node *head = nullptr; // node
     Node *current = head; // current points to head node
     double rand_rating = rand() % 5 + 1; // random number between 1 to 5
-
-    bool more_reviews = 1; // if 0, while loop ends
-    char temp_more_reviews;
-    
+  
     // adding node to the head of the linked list
-    while(more_reviews){
-        float temp_rating;
-        string temp_comment;
+    float temp_rating;
+    string temp_comment;
 
-        cout << "Enter review rating 0-5: ";
-        Node *new_value = new Node; // Node *new_value is in loop as a new one has to get defined for each new node
-        cin >> temp_rating;
-        cout << "Enter review comments: ";
-        cin.ignore();
-        getline(cin, temp_comment);
-    
-        if (!head){ // if its the first node
-            head = new_value;
-            new_value->next = nullptr;
-            new_value->rating = temp_rating;
-            new_value->comments = temp_comment;
-        }
-        else{ // if its not the first node
-            add_front_node(new_value, head, temp_comment, temp_rating);
-            head = new_value; // head node is now the most recently added node
-        }
-        cout << "Enter another review? Y/N: ";
-        cin >> temp_more_reviews;
-        if ((temp_more_reviews == 'n') || (temp_more_reviews == 'N')){
-            more_reviews = 0;
-        }
+    cout << "Enter review rating 0-5: ";
+    Node *new_value = new Node; // Node *new_value is in loop as a new one has to get defined for each new node
+    cin >> temp_rating;
+    cout << "Enter review comments: ";
+    cin.ignore();
+    getline(cin, temp_comment);
+
+    if (!head){ // if its the first node
+        head = new_value;
+        new_value->next = nullptr;
+        new_value->rating = temp_rating;
+        new_value->comments = temp_comment;
+    }
+    else{ // if its not the first node
+        add_front_node(new_value, head, temp_comment, temp_rating);
+        head = new_value; // head node is now the most recently added node
     }
 
     // output is printing out correctly

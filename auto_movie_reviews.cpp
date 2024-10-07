@@ -3,6 +3,8 @@
 #include <iostream>
 #include <string>
 #include <iomanip>
+#include <fstream>
+#include <array>
 
 using namespace std;
 
@@ -65,7 +67,9 @@ private:
     Node *movie_comments;
 
 public:
-    Movie(string title, Node *ratings, Node *comments) {string }
+    Movie(string title, Node *ratings, Node *comments) {movie_title = title; movie_ratings = ratings; movie_comments = comments;}
+
+    // might have to move output function to here
 };
 
 /* NOTES: - REVIEW COMMENTS NEED TO BE READ FROM AN EXTERNAL FILE
@@ -76,8 +80,10 @@ public:
                 LINKED LIST FOR REVIEW COMMENTS
           - main() needs to feature a container of the Movie objects*/
 int main(){
+    ifstream fin ("reviews_for_movies.txt");
     Node *head = nullptr; // node
     Node *current = head; // current points to head node
+    double rand_rating = rand() % 5 + 1; // random number between 1 to 5
 
     bool more_reviews = 1; // if 0, while loop ends
     char temp_more_reviews;
@@ -114,6 +120,7 @@ int main(){
     // output is printing out correctly
     output(head);
 
+    fin.close();
     delete_linked_list(current, head);
     head = nullptr;
     // linked list is properly deallocated

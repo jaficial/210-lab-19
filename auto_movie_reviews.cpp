@@ -50,6 +50,18 @@ public:
     // Node *get_movie_comments() {return movie_comments;}
     // void set_comments(Node *comments) {movie_comments = comments;}
     // might have to move output function to here
+
+    void print() {
+        cout << "This is the title of the movie: " << movie_title << endl;
+        cout << "These were the reviews:\n";
+
+        Node *current = movie_comments;
+        while (current){
+            cout << movie_comments->comments << endl;
+            current = current->next;
+        }
+        cout << endl;
+    }
 };
 
 struct movieNode {
@@ -63,7 +75,12 @@ void output(movieNode *hd){
         return;
     }
     int count = 1;
-    movieNode
+    movieNode * current = hd;
+    while (current){
+        current->movie_obj.print();
+    }
+
+
 
 }
 /* funtion takes in the head and current node of the linked list,
@@ -115,7 +132,7 @@ int main(){
     //  - ONLY NEED ONE RATING PER MOVIE, TWO COMMENTS PER MOVIE
     double temp_rating;
     for (int i = 0; i < MAX_MOVIES; i++){ // Outer for loop is for movie container (linked list)
-        movieNode *new_movie = nullptr;
+        movieNode *new_movie = new movieNode;
         Node *head = nullptr; // if I have the head initialization here, i'll have a head for each set of movie data
         Node *current = head;
         string temp_title;
@@ -151,7 +168,7 @@ int main(){
     }
     // output is printing out correctly
     // output(head);
-
+    output(container_head);
     fin.close();
     delete_linked_list(container_current, container_head);
     container_head = nullptr;

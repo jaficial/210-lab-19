@@ -80,6 +80,11 @@ public:
     // might have to move output function to here
 };
 
+struct movieNode {
+    Movie movie_obj;
+    movieNode *next;
+};
+
 /* NOTES: - REVIEW COMMENTS NEED TO BE READ FROM AN EXTERNAL FILE
           - MOVIE RATING IS A RANDOM (type double) NUMBER BETWEEN 1.0 and 5.0 (must only have 1 decimal place))
           - NEED A MOVIE CLASS 
@@ -93,13 +98,16 @@ int main(){
     ifstream fin ("reviews_for_movies.txt");
     // Node *head = nullptr; // node 
     // Node *current = head; // current points to head node
-    
-
+    movieNode *container_head = nullptr;
+    movieNode *container_current = container_head;
     
     double rand_rating = rand() % 5 + 1; // random number between 1 to 5
   
     // adding node to the head of the linked list
-    float temp_rating;
+
+
+    /*
+    double temp_rating;
     string temp_comment;
 
     cout << "Enter review rating 0-5: ";
@@ -108,7 +116,20 @@ int main(){
     cout << "Enter review comments: ";
     cin.ignore();
     getline(cin, temp_comment);
+    */
 
+    // NEED 3 SETS OF NODES: 
+    //  - nodes for movies container
+    //  - nodes for ratings
+    //  - nodes for comments
+    for (int i = 0; i < MAX_MOVIES; i++){
+        movieNode *new_movie = new movieNode;
+        if (!container_head) {
+            
+        }
+
+
+    }
     if (!head){ // if its the first node
         head = new_value;
         new_value->next = nullptr;

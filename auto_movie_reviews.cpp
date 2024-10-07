@@ -91,8 +91,8 @@ public:
           // GOING TO USE A LINKED LIST FOR THE CONTAINER
 int main(){
     ifstream fin ("reviews_for_movies.txt");
-    Node *head = nullptr; // node
-    Node *current = head; // current points to head node
+    // Node *head = nullptr; // node 
+    // Node *current = head; // current points to head node
     
 
     

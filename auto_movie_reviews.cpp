@@ -67,14 +67,15 @@ private:
     Node *movie_comments;
 
 public:
-    string get_movie_title() {return movie_title;}
-    void set_title(string title) {movie_title = title;}
+    Movie(string title, double rating, Node *comments) {movie_title = title; movie_rating = rating; movie_comments = comments;}
+    // string get_movie_title() {return movie_title;}
+    // void set_title(string title) {movie_title = title;}
 
-    double get_movie_rating() {return movie_rating;}
-    void set_rating(double rating) {movie_rating = rating;}
+    // double get_movie_rating() {return movie_rating;}
+    // void set_rating(double rating) {movie_rating = rating;}
 
-    Node *get_movie_comments() {return movie_comments;}
-    void set_comments(Node *comments) {movie_comments = comments;}
+    // Node *get_movie_comments() {return movie_comments;}
+    // void set_comments(Node *comments) {movie_comments = comments;}
     // might have to move output function to here
 };
 
@@ -122,16 +123,17 @@ int main(){
     //  - ONLY NEED ONE RATING PER MOVIE, TWO COMMENTS PER MOVIE
     for (int i = 0; i < MAX_MOVIES; i++){ // Outer for loop is for movie container (linked list)
         movieNode *new_movie = new movieNode;
-        Node *head = nullptr; // 
+        Node *head = nullptr; // if I have the head initialization here, i'll have a head for each set of movie data
         Node *current = head;
-        for (int j = 0; j < MAX_MOVIES; j++){ // inner for loop is for movie data per movie
+
+        for (int j = 0; j < MAX_MOVIES; j++){ // inner for loop is for movie data per movie, two loops since there are two reveiws per movie
             string temp_comment;
             Node *new_value = new Node;
-            getline(fin, "reviews_for_movies.txt");
+            getline(fin, temp_comment);
             if (!head){ // for first node of ratings and comments
-                head = new_value;
-                new_value->next = nullptr;
-                new_value->comments = temp_comment
+                head = new_value; // head gets assigned to new node value
+                new_value->next = nullptr; // newval points to null
+                new_value->comments = temp_comment; // newval-comments gets assigned the temp comment
             }
             else{ //  for second node of comments
                 add_front_node(new_value, head, temp_comment);
@@ -143,7 +145,7 @@ int main(){
         if (!container_head) { // for first node
             container_head = new_movie;
             new_movie->next = nullptr;
-            new_movie->movie_obj =  // movie object;
+            new_movie->movie_obj =  movie("")
         }
 
 

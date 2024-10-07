@@ -1,5 +1,5 @@
-// COMSC-210 | Lab 18 | Jed Aficial |
-// github link: https://github.com/jaficial/210-lab-18
+// COMSC-210 | Lab 19 | Jed Aficial |
+// github link: https://github.com/jaficial/210-lab-19
 #include <iostream>
 #include <string>
 #include <iomanip>
@@ -29,9 +29,7 @@ void add_front_node(Node *new_value, Node *head, string temp_comment){
 
 /* output function traverses the linked list and outputs the nodes of the linked list, 
    as well as calulates the average of the movie ratings. */ 
-// void output(Node * list){
 
-// }
 class Movie {
 private:
     string movie_title;
@@ -40,16 +38,6 @@ private:
 
 public:
     Movie(string title, double rating, Node *comments) {movie_title = title; movie_rating = rating; movie_comments = comments;}
-    
-    // string get_movie_title() {return movie_title;}
-    // void set_title(string title) {movie_title = title;}
-
-    // double get_movie_rating() {return movie_rating;}
-    // void set_rating(double rating) {movie_rating = rating;}
-
-    // Node *get_movie_comments() {return movie_comments;}
-    // void set_comments(Node *comments) {movie_comments = comments;}
-    // might have to move output function to here
 
     void print() {
         cout << "This is the title of the movie: " << movie_title << endl;
@@ -79,9 +67,6 @@ void output(movieNode *hd){
     while (current){
         current->movie_obj.print();
     }
-
-
-
 }
 /* funtion takes in the head and current node of the linked list,
    and deallocates the memory for each node.*/
@@ -104,27 +89,9 @@ void delete_linked_list(movieNode*current, movieNode *head){
           // GOING TO USE A LINKED LIST FOR THE CONTAINER
 int main(){
     ifstream fin ("reviews_for_movies.txt");
-    // Node *head = nullptr; // node 
-    // Node *current = head; // current points to head node
+   
     movieNode *container_head = nullptr; // for container
     movieNode *container_current = container_head;
-    //
-    // Node *head = nullptr; // for 
-    // Node *current = head;
-
-    // adding node to the head of the linked list
-
-    /*
-    double temp_rating;
-    string temp_comment;
-
-    cout << "Enter review rating 0-5: ";
-    Node *new_value = new Node; // Node *new_value is in loop as a new one has to get defined for each new node
-    cin >> temp_rating;
-    cout << "Enter review comments: ";
-    cin.ignore();
-    getline(cin, temp_comment);
-    */
 
     // NEED 2 SETS OF NODES: 
     //  - nodes for movies container
@@ -132,7 +99,7 @@ int main(){
     //  - ONLY NEED ONE RATING PER MOVIE, TWO COMMENTS PER MOVIE
     double temp_rating;
     for (int i = 0; i < MAX_MOVIES; i++){ // Outer for loop is for movie container (linked list)
-        movieNode *new_movie = new movieNode;
+        
         Node *head = nullptr; // if I have the head initialization here, i'll have a head for each set of movie data
         Node *current = head;
         string temp_title;
@@ -152,6 +119,7 @@ int main(){
                 head = new_value;
             }
         }
+        movieNode *new_movie = new movieNode;
 
         temp_rating = rand() % 5 + 1;
         if (!container_head) { // for first node
@@ -164,10 +132,8 @@ int main(){
             new_movie->movie_obj = Movie(temp_title, temp_rating, head);
             container_head = new_movie;
         }
-
     }
-    // output is printing out correctly
-    // output(head);
+ 
     output(container_head);
     fin.close();
     delete_linked_list(container_current, container_head);

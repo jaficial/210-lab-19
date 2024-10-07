@@ -12,7 +12,6 @@ using namespace std;
 
 // CITED: Will be reusing my Lab 17 submission, except editting it to fit Lab 19
 struct Node {
-    float rating;
     string comments;
     Node *next;
 };
@@ -33,10 +32,9 @@ void delete_linked_list(Node*current, Node *head){
 
 /* add_front_node takes in the new node, data for the new node, and the previous head node,
    and sets the new node to point at the head node */
-void add_front_node(Node *new_value, Node *head, string temp_comment, float temp_rating){
+void add_front_node(Node *new_value, Node *head, string temp_comment){
 	new_value->next = head;
 	new_value->comments = temp_comment;
-	new_value->rating = temp_rating;
 }
 
 /* output function traverses the linked list and outputs the nodes of the linked list, 
@@ -65,15 +63,15 @@ void output(Node * list){
 class Movie {
 private:
     string movie_title;
-    Node *movie_ratings;
+    double movie_rating;
     Node *movie_comments;
 
 public:
     string get_movie_title() {return movie_title;}
     void set_title(string title) {movie_title = title;}
 
-    Node *get_movie_ratings() {return movie_ratings;}
-    void set_ratings(Node *ratings) {movie_ratings = ratings;}
+    double get_movie_rating() {return movie_rating;}
+    void set_rating(double rating) {movie_rating = rating;}
 
     Node *get_movie_comments() {return movie_comments;}
     void set_comments(Node *comments) {movie_comments = comments;}
@@ -101,8 +99,10 @@ int main(){
     movieNode *container_head = nullptr;
     movieNode *container_current = container_head;
     
+    Node *head = nullptr;
+    Node *current = head;
     double rand_rating = rand() % 5 + 1; // random number between 1 to 5
-  
+
     // adding node to the head of the linked list
 
 
@@ -118,14 +118,25 @@ int main(){
     getline(cin, temp_comment);
     */
 
-    // NEED 3 SETS OF NODES: 
+    // NEED 2 SETS OF NODES: 
     //  - nodes for movies container
-    //  - nodes for ratings
-    //  - nodes for comments
+    //  - nodes for rating and comments 
+    //  - ONLY NEED ONE RATING PER MOVIE, TWO COMMENTS PER MOVIE
     for (int i = 0; i < MAX_MOVIES; i++){
         movieNode *new_movie = new movieNode;
-        if (!container_head) {
-            
+        for (int j = 0; j < MAX_MOVIES; j++){
+            double temp_rating;
+            string temp_comment;
+            if (!head){ // for first node of ratings and comments
+                head = 
+                
+            }
+        }
+        if (!container_head) { // for first node
+
+            container_head = new_movie;
+            new_movie->next = nullptr;
+            new_movie->movie_obj =  // movie object;
         }
 
 

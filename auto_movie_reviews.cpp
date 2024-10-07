@@ -125,6 +125,8 @@ int main(){
         movieNode *new_movie = new movieNode;
         Node *head = nullptr; // if I have the head initialization here, i'll have a head for each set of movie data
         Node *current = head;
+        string temp_title;
+        temp_title = "Movie #" + to_string(i); // CITED from: https://www.geeksforgeeks.org/stdto_string-in-cpp/
 
         for (int j = 0; j < MAX_MOVIES; j++){ // inner for loop is for movie data per movie, two loops since there are two reveiws per movie
             string temp_comment;

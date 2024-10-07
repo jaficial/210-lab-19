@@ -42,42 +42,28 @@ public:
     void set_title(string title) {movie_title = title;}
 
     double get_movie_rating() {return movie_rating;}
-    void set_rating(string rating) {movie_rating = rating;}
+    void set_rating(double rating) {movie_rating = rating;}
     
     Node *get_movie_comments() {return movie_comments;}
     void set_comments(Node *comments) {movie_comments = comments;} 
     void print() {
         cout << "This is the title of the movie: " << movie_title << endl;
+        cout << "The movie rating was: " << movie_rating << endl;
         cout << "These were the reviews:\n";
 
         Node *current = movie_comments;
         while (current){
-            cout << movie_comments->comments << endl;
+            cout << setw(4) << "" << movie_comments->comments << endl;
             current = current->next;
         }
         cout << endl;
     }
 };
 
-struct movieNode {
-    Movie movie_obj;
-    movieNode *next;
-};
 
-void output(movieNode *hd){
-    if(!hd){
-        cout << "Empty list.\n";
-        return;
-    }
-    int count = 1;
-    movieNode * current = hd;
-    while (current){
-        current->movie_obj.print();
-    }
-}
 /* funtion takes in the head and current node of the linked list,
    and deallocates the memory for each node.*/
-void delete_linked_list(movieNode*current, movieNode *head){
+void delete_linked_list(Node*current, Node *head){
     while(current){
         head = current->next;
         delete current;
@@ -93,18 +79,12 @@ void delete_linked_list(movieNode*current, movieNode *head){
                 LINKED LIST FOR REVIEW COMMENTS
           - main() needs to feature a container of the Movie objects*/
 
-          // GOING TO USE A LINKED LIST FOR THE CONTAINER
+          // Ended up using an array container for the movie objects
+          // NOTE: 2 comments per 
 int main(){
     ifstream fin ("reviews_for_movies.txt");
-   
-    movieNode *container_head = nullptr; // for head of container
-    movieNode *container_current = container_head;
-
     array<Movie, 2> movies;
-    // NEED 2 SETS OF NODES: 
-    //  - nodes for movies container
-    //  - nodes for and comments 
-    //  - ONLY NEED ONE RATING, TWO COMMENTS PER MOVIE
+  
     double temp_rating;
     for (int i = 0; i < MAX_MOVIES; i++){ // Outer for loop is for movie container (linked list)
         
@@ -127,25 +107,23 @@ int main(){
                 head = new_value;
             }
         }
-        movieNode *new_movie = new movieNode;
-
         temp_rating = rand() % 5 + 1;
-        if (!container_head) { // for first node
-            container_head = new_movie;
-            new_movie->next = nullptr;
-            new_movie->movie_obj =  Movie(temp_title, temp_rating, head);
-        }
-        else { // every other node
-            new_movie->next = container_head;
-            new_movie->movie_obj = Movie(temp_title, temp_rating, head);
-            container_head = new_movie;
-        }
+        Movie temp_object;
+        temp_object.set_rating(temp_rating);
+        temp_object.set_title(temp_title);
+        temp_object.set_comments(head);
+        movies[i] = temp_object;
     }
+    
  
-    output(container_head);
+   
     fin.close();
-    delete_linked_list(container_current, container_head);
-    container_head = nullptr;
+    for (auto movie_num : movies){
+        movie_num.print();
+        cout << endl;
+    }
+    // delete_linked_list(container_current, container_head);
+    // container_head = nullptr;
     // linked list is properly deallocated
     return 0;
 }

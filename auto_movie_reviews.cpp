@@ -16,9 +16,7 @@ struct Node {
     Node *next;
 };
 
-void output(Node *);
 void add_front_node(Node *, Node *, string, int);
-void delete_linked_list(Node *, Node *);
 
 /* add_front_node takes in the new node, data for the new node, and the previous head node,
    and sets the new node to point at the head node */
@@ -27,9 +25,7 @@ void add_front_node(Node *new_value, Node *head, string temp_comment){
 	new_value->comments = temp_comment;
 }
 
-/* output function traverses the linked list and outputs the nodes of the linked list, 
-   as well as calulates the average of the movie ratings. */ 
-
+// Movie class for movie objects
 class Movie {
 private:
     string movie_title;
@@ -37,7 +33,7 @@ private:
     Node *movie_comments;
 
 public:
-    //Movie(string title, double rating, Node *comments) {movie_title = title; movie_rating = rating; movie_comments = comments;}
+    // set of setters and getters for the movie title, movie rating, and movie comments linked list
     string get_movie_title() {return movie_title;}
     void set_title(string title) {movie_title = title;}
 
@@ -56,20 +52,8 @@ public:
             cout << setw(4) << "" << movie_comments->comments << endl;
             current = current->next;
         }
-        cout << endl;
     }
 };
-
-
-/* funtion takes in the head and current node of the linked list,
-   and deallocates the memory for each node.*/
-void delete_linked_list(Node*current, Node *head){
-    while(current){
-        head = current->next;
-        delete current;
-        current = head;
-    }
-}
 
 /* NOTES: - REVIEW COMMENTS NEED TO BE READ FROM AN EXTERNAL FILE
           - MOVIE RATING IS A RANDOM (type double) NUMBER BETWEEN 1.0 and 5.0 (must only have 1 decimal place))
@@ -80,13 +64,13 @@ void delete_linked_list(Node*current, Node *head){
           - main() needs to feature a container of the Movie objects*/
 
           // Ended up using an array container for the movie objects
-          // NOTE: 2 comments per 
+          // NOTE: 2 comments, 1 rating per movie
 int main(){
     ifstream fin ("reviews_for_movies.txt");
     array<Movie, 2> movies;
   
     double temp_rating;
-    for (int i = 0; i < MAX_MOVIES; i++){ // Outer for loop is for movie container (linked list)
+    for (int i = 0; i < MAX_MOVIES; i++){ // Outer for loop is for movie container (array container)
         
         Node *head = nullptr; // if I have the head initialization here, i'll have a head for each set of movie data
         Node *current = head;
@@ -114,16 +98,11 @@ int main(){
         temp_object.set_comments(head);
         movies[i] = temp_object;
     }
-    
- 
    
     fin.close();
     for (auto movie_num : movies){
         movie_num.print();
         cout << endl;
     }
-    // delete_linked_list(container_current, container_head);
-    // container_head = nullptr;
-    // linked list is properly deallocated
     return 0;
 }

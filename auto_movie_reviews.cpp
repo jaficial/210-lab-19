@@ -106,7 +106,7 @@ int main(){ // will take short break
         add_front_node(new_value, head, temp_comment, temp_rating);
         head = new_value; // head node is now the most recently added node
     }
-
+//
     // output is printing out correctly
     output(head);
 

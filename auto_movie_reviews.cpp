@@ -67,8 +67,10 @@ private:
     Node *movie_comments;
 
 public:
-    Movie(string title, Node *ratings, Node *comments) {movie_title = title; movie_ratings = ratings; movie_comments = comments;}
+    string get_movie_title() {return movie_title;}
+    void set_title(string title) {movie_title = title;}
 
+    Node *movie_ratings() {return movie_ratings;}
     // might have to move output function to here
 };
 
@@ -79,10 +81,13 @@ public:
                 LINKED LIST FOR RATING NUMBER 
                 LINKED LIST FOR REVIEW COMMENTS
           - main() needs to feature a container of the Movie objects*/
-int main(){ // will take short break
+int main(){
     ifstream fin ("reviews_for_movies.txt");
     Node *head = nullptr; // node
     Node *current = head; // current points to head node
+    array<Movie, 2> movies;
+
+    
     double rand_rating = rand() % 5 + 1; // random number between 1 to 5
   
     // adding node to the head of the linked list
@@ -106,7 +111,6 @@ int main(){ // will take short break
         add_front_node(new_value, head, temp_comment, temp_rating);
         head = new_value; // head node is now the most recently added node
     }
-//
     // output is printing out correctly
     output(head);
 

@@ -96,11 +96,11 @@ int main(){
     ifstream fin ("reviews_for_movies.txt");
     // Node *head = nullptr; // node 
     // Node *current = head; // current points to head node
-    movieNode *container_head = nullptr;
+    movieNode *container_head = nullptr; // for container
     movieNode *container_current = container_head;
-    
-    Node *head = nullptr;
-    Node *current = head;
+    //
+    // Node *head = nullptr; // for 
+    // Node *current = head;
 
     // adding node to the head of the linked list
 
@@ -122,6 +122,8 @@ int main(){
     //  - ONLY NEED ONE RATING PER MOVIE, TWO COMMENTS PER MOVIE
     for (int i = 0; i < MAX_MOVIES; i++){ // Outer for loop is for movie container (linked list)
         movieNode *new_movie = new movieNode;
+        Node *head = nullptr; // 
+        Node *current = head;
         for (int j = 0; j < MAX_MOVIES; j++){ // inner for loop is for movie data per movie
             string temp_comment;
             Node *new_value = new Node;

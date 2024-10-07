@@ -87,7 +87,7 @@ struct movieNode {
           - MOVIE RATING IS A RANDOM (type double) NUMBER BETWEEN 1.0 and 5.0 (must only have 1 decimal place))
           - NEED A MOVIE CLASS 
             - OBJECTS: TITLE, 
-                LINKED LIST FOR RATING NUMBER 
+                DOUBLE FOR RATING
                 LINKED LIST FOR REVIEW COMMENTS
           - main() needs to feature a container of the Movie objects*/
 
@@ -101,10 +101,8 @@ int main(){
     
     Node *head = nullptr;
     Node *current = head;
-    double rand_rating = rand() % 5 + 1; // random number between 1 to 5
 
     // adding node to the head of the linked list
-
 
     /*
     double temp_rating;
@@ -120,36 +118,33 @@ int main(){
 
     // NEED 2 SETS OF NODES: 
     //  - nodes for movies container
-    //  - nodes for rating and comments 
+    //  - nodes for and comments 
     //  - ONLY NEED ONE RATING PER MOVIE, TWO COMMENTS PER MOVIE
-    for (int i = 0; i < MAX_MOVIES; i++){
+    for (int i = 0; i < MAX_MOVIES; i++){ // Outer for loop is for movie container (linked list)
         movieNode *new_movie = new movieNode;
-        for (int j = 0; j < MAX_MOVIES; j++){
-            double temp_rating;
+        for (int j = 0; j < MAX_MOVIES; j++){ // inner for loop is for movie data per movie
             string temp_comment;
+            Node *new_value = new Node;
+            getline(fin, "reviews_for_movies.txt");
             if (!head){ // for first node of ratings and comments
-                head = 
-                
+                head = new_value;
+                new_value->next = nullptr;
+                new_value->comments = temp_comment
+            }
+            else{ //  for second node of comments
+                add_front_node(new_value, head, temp_comment);
+                head = new_value;
             }
         }
-        if (!container_head) { // for first node
 
+        double temp_rating = rand() % 5 + 1;
+        if (!container_head) { // for first node
             container_head = new_movie;
             new_movie->next = nullptr;
             new_movie->movie_obj =  // movie object;
         }
 
 
-    }
-    if (!head){ // if its the first node
-        head = new_value;
-        new_value->next = nullptr;
-        new_value->rating = temp_rating;
-        new_value->comments = temp_comment;
-    }
-    else{ // if its not the first node
-        add_front_node(new_value, head, temp_comment, temp_rating);
-        head = new_value; // head node is now the most recently added node
     }
     // output is printing out correctly
     output(head);

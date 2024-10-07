@@ -7,7 +7,7 @@
 using namespace std;
 
 // CITED: Will be reusing some of my code from my previous lab submission (Lab 17) for linked list functions
-
+ //
 struct Node {
     float rating;
     string comments;

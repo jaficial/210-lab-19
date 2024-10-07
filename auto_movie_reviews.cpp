@@ -90,7 +90,7 @@ void delete_linked_list(movieNode*current, movieNode *head){
 int main(){
     ifstream fin ("reviews_for_movies.txt");
    
-    movieNode *container_head = nullptr; // for container
+    movieNode *container_head = nullptr; // for head of container
     movieNode *container_current = container_head;
 
     // NEED 2 SETS OF NODES: 

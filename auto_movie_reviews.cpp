@@ -20,16 +20,6 @@ void output(Node *);
 void add_front_node(Node *, Node *, string, int);
 void delete_linked_list(Node *, Node *);
 
-/* funtion takes in the head and current node of the linked list,
-   and deallocates the memory for each node.*/
-void delete_linked_list(Node*current, Node *head){
-    while(current){
-        head = current->next;
-        delete current;
-        current = head;
-    }
-}
-
 /* add_front_node takes in the new node, data for the new node, and the previous head node,
    and sets the new node to point at the head node */
 void add_front_node(Node *new_value, Node *head, string temp_comment){
@@ -39,27 +29,9 @@ void add_front_node(Node *new_value, Node *head, string temp_comment){
 
 /* output function traverses the linked list and outputs the nodes of the linked list, 
    as well as calulates the average of the movie ratings. */ 
-void output(Node * list){
-    if (!list){
-        cout << "Empty list." << endl;
-        return;
-    }
-    else{
-        int count = 1;
-        Node * current = list;
-        cout << "Outputting all reviews:" << endl;
-        float average;
-        while(current){
-            cout << setw(4) << "" << "> Review " << count++ << ": " << current->rating << ": " << current->comments;
-            cout << endl;
-            average += current->rating;
-            current = current->next;
-        }
-        count--;
-        average = average / count;
-        cout << setw(4) << "" << "> Average: " << average << endl;
-    }
-}
+// void output(Node * list){
+
+// }
 class Movie {
 private:
     string movie_title;
@@ -68,6 +40,7 @@ private:
 
 public:
     Movie(string title, double rating, Node *comments) {movie_title = title; movie_rating = rating; movie_comments = comments;}
+    
     // string get_movie_title() {return movie_title;}
     // void set_title(string title) {movie_title = title;}
 
@@ -84,6 +57,24 @@ struct movieNode {
     movieNode *next;
 };
 
+void output(movieNode *hd){
+    if(!hd){
+        cout << "Empty list.\n";
+        return;
+    }
+    int count = 1;
+    movieNode
+
+}
+/* funtion takes in the head and current node of the linked list,
+   and deallocates the memory for each node.*/
+void delete_linked_list(movieNode*current, movieNode *head){
+    while(current){
+        head = current->next;
+        delete current;
+        current = head;
+    }
+}
 
 /* NOTES: - REVIEW COMMENTS NEED TO BE READ FROM AN EXTERNAL FILE
           - MOVIE RATING IS A RANDOM (type double) NUMBER BETWEEN 1.0 and 5.0 (must only have 1 decimal place))
@@ -124,7 +115,7 @@ int main(){
     //  - ONLY NEED ONE RATING PER MOVIE, TWO COMMENTS PER MOVIE
     double temp_rating;
     for (int i = 0; i < MAX_MOVIES; i++){ // Outer for loop is for movie container (linked list)
-        movieNode *new_movie = new movieNode;
+        movieNode *new_movie = nullptr;
         Node *head = nullptr; // if I have the head initialization here, i'll have a head for each set of movie data
         Node *current = head;
         string temp_title;
@@ -152,16 +143,18 @@ int main(){
             new_movie->movie_obj =  Movie(temp_title, temp_rating, head);
         }
         else { // every other node
-            
+            new_movie->next = container_head;
+            new_movie->movie_obj = Movie(temp_title, temp_rating, head);
+            container_head = new_movie;
         }
 
     }
     // output is printing out correctly
-    output(head);
+    // output(head);
 
     fin.close();
-    delete_linked_list(current, head);
-    head = nullptr;
+    delete_linked_list(container_current, container_head);
+    container_head = nullptr;
     // linked list is properly deallocated
     return 0;
 }

@@ -37,8 +37,15 @@ private:
     Node *movie_comments;
 
 public:
-    Movie(string title, double rating, Node *comments) {movie_title = title; movie_rating = rating; movie_comments = comments;}
+    //Movie(string title, double rating, Node *comments) {movie_title = title; movie_rating = rating; movie_comments = comments;}
+    string get_movie_title() {return movie_title;}
+    void set_title(string title) {movie_title = title;}
 
+    double get_movie_rating() {return movie_rating;}
+    void set_rating(string rating) {movie_rating = rating;}
+    
+    Node *get_movie_comments() {return movie_comments;}
+    void set_comments(Node *comments) {movie_comments = comments;} 
     void print() {
         cout << "This is the title of the movie: " << movie_title << endl;
         cout << "These were the reviews:\n";
@@ -93,10 +100,11 @@ int main(){
     movieNode *container_head = nullptr; // for head of container
     movieNode *container_current = container_head;
 
+    array<Movie, 2> movies;
     // NEED 2 SETS OF NODES: 
     //  - nodes for movies container
     //  - nodes for and comments 
-    //  - ONLY NEED ONE RATING PER MOVIE, TWO COMMENTS PER MOVIE
+    //  - ONLY NEED ONE RATING, TWO COMMENTS PER MOVIE
     double temp_rating;
     for (int i = 0; i < MAX_MOVIES; i++){ // Outer for loop is for movie container (linked list)
         

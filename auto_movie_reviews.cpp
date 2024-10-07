@@ -6,6 +6,8 @@
 #include <fstream>
 #include <array>
 
+int MAX_MOVIES = 2;
+
 using namespace std;
 
 // CITED: Will be reusing my Lab 17 submission, except editting it to fit Lab 19
@@ -70,7 +72,11 @@ public:
     string get_movie_title() {return movie_title;}
     void set_title(string title) {movie_title = title;}
 
-    Node *movie_ratings() {return movie_ratings;}
+    Node *get_movie_ratings() {return movie_ratings;}
+    void set_ratings(Node *ratings) {movie_ratings = ratings;}
+
+    Node *get_movie_comments() {return movie_comments;}
+    void set_comments(Node *comments) {movie_comments = comments;}
     // might have to move output function to here
 };
 
@@ -81,11 +87,13 @@ public:
                 LINKED LIST FOR RATING NUMBER 
                 LINKED LIST FOR REVIEW COMMENTS
           - main() needs to feature a container of the Movie objects*/
+
+          // GOING TO USE A LINKED LIST FOR THE CONTAINER
 int main(){
     ifstream fin ("reviews_for_movies.txt");
     Node *head = nullptr; // node
     Node *current = head; // current points to head node
-    array<Movie, 2> movies;
+    
 
     
     double rand_rating = rand() % 5 + 1; // random number between 1 to 5
